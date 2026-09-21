@@ -1,0 +1,36 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Button {
+  +paint(): void
+}
+interface Checkbox {
+  +paint(): void
+}
+interface GUIFactory {
+  +createButton(): Button
+  +createCheckbox(): Checkbox
+}
+
+class WindowsButton
+class WindowsCheckbox
+class MacOSButton
+class MacOSCheckbox
+class WindowsFactory
+class MacOSFactory
+class DeliveryApplication
+
+WindowsButton ..|> Button
+WindowsCheckbox ..|> Checkbox
+MacOSButton ..|> Button
+MacOSCheckbox ..|> Checkbox
+WindowsFactory ..|> GUIFactory
+MacOSFactory ..|> GUIFactory
+WindowsFactory ..> WindowsButton
+WindowsFactory ..> WindowsCheckbox
+MacOSFactory ..> MacOSButton
+MacOSFactory ..> MacOSCheckbox
+DeliveryApplication --> GUIFactory
+DeliveryApplication --> Button
+DeliveryApplication --> Checkbox
+@enduml
