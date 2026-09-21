@@ -1,23 +1,20 @@
 package application;
 
-import abstractfactory.Button;
-import abstractfactory.Checkbox;
-import abstractfactory.GUIFactory;
-import factorymethod.Logistics;
+import factorymethod.*;
+import abstractfactory.*;
 
 public class DeliveryApplication {
-    private final GUIFactory guiFactory;
+    private final Button button;
+    private final Checkbox checkbox;
     private final Logistics logistics;
 
-    public DeliveryApplication(GUIFactory guiFactory, Logistics logistics) {
-        this.guiFactory = guiFactory;
+    public DeliveryApplication(GUIFactory factory, Logistics logistics) {
+        this.button = factory.createButton();
+        this.checkbox = factory.createCheckbox();
         this.logistics = logistics;
     }
 
-    public void run() {
-        Button button = guiFactory.createButton();
-        Checkbox checkbox = guiFactory.createCheckbox();
-
+    public void executeApp(String cargo, String destination) {
         button.paint();
         checkbox.paint();
         logistics.planDelivery(cargo, destination);
