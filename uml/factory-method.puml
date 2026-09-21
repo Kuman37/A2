@@ -1,0 +1,24 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Transport {
+  +deliver(cargo: String, destination: String): void
+}
+
+class Truck
+class Ship
+
+abstract class Logistics {
+  #createTransport(): Transport
+  +planDelivery(cargo: String, destination: String): void
+}
+
+class RoadLogistics
+class SeaLogistics
+
+Truck ..|> Transport
+Ship ..|> Transport
+RoadLogistics --|> Logistics
+SeaLogistics --|> Logistics
+Logistics ..> Transport : creates/uses
+@enduml
